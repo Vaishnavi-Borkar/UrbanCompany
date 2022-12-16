@@ -10,7 +10,7 @@ const india = ["Pune", "Nagpur", "Nashik", "Agra", "Amritsar", "Kanpur", "Mumbai
     "Cuttack", "Guntur", "Guwahati"]
 function Footer() {
     return (
-        <Box>
+        <Box style={{ marginTop: "80px" }}>
 
             <Box bgColor="black" color="#b8cccc"  >
                 <Box display="flex" marginLeft="40px"

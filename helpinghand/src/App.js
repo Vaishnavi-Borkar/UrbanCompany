@@ -4,6 +4,7 @@ import Footer from './Components/Footer';
 import AllRoutes from './Routes/AllRoutes';
 import Navbar from "./Components/Navbar";
 import Home from './Routes/Home';
+import Register from "./Routes/Register";
 // import Register from './Routes/Register';
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <AllRoutes />
       {/* <Home /> */}
       {/* <Footer /> */}
+      {/* <Register /> */}
 
     </div>
   );
