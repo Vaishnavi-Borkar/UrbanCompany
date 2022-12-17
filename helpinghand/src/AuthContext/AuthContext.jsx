@@ -1,4 +1,5 @@
 import { useState } from "React";
+import React from "react"
 export const AuthContext = React.createContext();
 
 
