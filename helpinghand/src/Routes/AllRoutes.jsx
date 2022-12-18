@@ -4,6 +4,9 @@ import Help from "./Help";
 import Login from "./Login"
 import Register from "./Register";
 import NotFound from "./NotFound";
+import Modal from "./Modal";
+import Product from "./Product";
+import Service from "./Service";
 function AllRoutes() {
     return (
         <>
@@ -13,6 +16,9 @@ function AllRoutes() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/modal" element={<Modal />} />
+                <Route path="/product" element={<Product />} />
+                <Route path="/service" element={<Service />} />
             </Routes>
         </>
     )
