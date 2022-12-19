@@ -21,14 +21,20 @@ import { useDisclosure } from '@chakra-ui/react';
 import { Link, NavLink } from "react-router-dom";
 import products from "../Data/products";
 import serviceproduct from "../Data/serviceproduct";
+
+
 const boxShadow = {
     width: "70%", height: "150px", margin: "auto", backgroundColor: "white", marginTop: "-30px",
     boxShadow: "rgba(0 ,0, 0, 0.1) 0px 4px 6px -1px ,rgba(0 ,0, 0, 0.06) 0px 2px 4px -1px"
 }
+
+
 const boxShadow2 = {
     width: "80%", height: "200px", margin: "auto", backgroundColor: "white", marginTop: "-30px",
     boxShadow: "rgba(0 ,0, 0, 0.1) 0px 4px 6px -1px ,rgba(0 ,0, 0, 0.06) 0px 2px 4px -1px"
 }
+
+
 const styleimg = {
 
     background:
@@ -36,9 +42,9 @@ const styleimg = {
     width: "100%", height: "500px",
 
 }
-const lastbox = {
-    alignItems: "center", justifyContent: "center", m: "auto", mt: "80px", w: "90%", h: "200px", boxShadow: "rgba(0 ,0, 0, 0.1) 0px 4px 6px -1px ,rgba(0 ,0, 0, 0.06) 0px 2px 4px -1px"
-}
+
+
+
 const care = [
     { src: "https://img.icons8.com/3d-fluency/512/hair-brush.png", title: 'Salon for Women', path: "/product" },
     { src: 'https://img.icons8.com/3d-fluency/512/communicate-skin-type-7.png', title: 'Hair,Skin & Nail', path: "/product" },
@@ -129,10 +135,12 @@ function Home() {
 
                 <HStack style={{ marginTop: "150px" }}>
                     {home.map((item) => (
-                        <Box style={{ margin: "10px 50px" }}>
+                        <Box style={{ margin: "10px 50px" }} onClick={onOpen}>
+
                             <Image src={item.img} alt="picture" style={{ width: "50px", height: "50px" }} />
-                            <Text fontSize='sm' >{item.title}</Text>
-                            <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+                            {/* <Text fontSize='sm' >{item.title}</Text> */}
+                            <Link to="/service" fontSize='sm' >{item.title}</Link>
+                            {/* <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
                                 <DrawerOverlay />
                                 <DrawerContent>
                                     <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
@@ -147,7 +155,7 @@ function Home() {
                                         ))}
                                     </DrawerBody>
                                 </DrawerContent>
-                            </Drawer>
+                            </Drawer> */}
                         </Box>
                     ))}
                 </HStack>
@@ -180,7 +188,7 @@ function Home() {
                 </VStack>
                 <Image src="https://img.icons8.com/ios-filled/512/like.png" alt="heart" w="90px" ml="30px" />
             </HStack>
-            <Link to="/modal">click me</Link>
+
             <Footer />
         </Box >
 
