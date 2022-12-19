@@ -1,38 +1,65 @@
-import { HStack, Box, Spacer, Select, Input, Flex, Image, Text } from "@chakra-ui/react";
+import { HStack, Box, Spacer, Select, Input, Flex, Image, Text, VStack, Button } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import {
+    Drawer,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    RadioGroup,
+    Radio,
+    Stack,
+
+
+} from '@chakra-ui/react';
+import React from "react";
+import { useDisclosure } from '@chakra-ui/react';
+import { Link, NavLink } from "react-router-dom";
+import products from "../Data/products";
+import serviceproduct from "../Data/serviceproduct";
+
+
 const boxShadow = {
     width: "70%", height: "150px", margin: "auto", backgroundColor: "white", marginTop: "-30px",
     boxShadow: "rgba(0 ,0, 0, 0.1) 0px 4px 6px -1px ,rgba(0 ,0, 0, 0.06) 0px 2px 4px -1px"
 }
+
+
 const boxShadow2 = {
     width: "80%", height: "200px", margin: "auto", backgroundColor: "white", marginTop: "-30px",
     boxShadow: "rgba(0 ,0, 0, 0.1) 0px 4px 6px -1px ,rgba(0 ,0, 0, 0.06) 0px 2px 4px -1px"
 }
+
+
 const styleimg = {
 
     background:
-        'url(https://img.freepik.com/premium-photo/young-man-cleaning-sofa-with-vacuum-cleaner-leaving-room-home_130111-3594.jpg?size=626&ext=jpg&ga=GA1.2.1668611951.1664289506) center/cover no-repeat',
+        'url(https://images.newindianexpress.com/uploads/user/imagelibrary/2021/6/2/w1200X800/Urban_Company.jpeg) center/cover no-repeat',
     width: "100%", height: "500px",
 
 }
 
+
+
 const care = [
-    { src: "https://img.icons8.com/3d-fluency/512/hair-brush.png", title: 'Salon for Women' },
-    { src: 'https://img.icons8.com/3d-fluency/512/communicate-skin-type-7.png', title: 'Hair,Skin & Nail' },
-    { src: 'https://img.icons8.com/3d-fluency/512/stones.png', title: "Women's Therapist" },
-    { src: "https://img.icons8.com/3d-fluency/512/barber-chair.png", title: "Salon for Men" },
-    { src: "https://img.icons8.com/3d-fluency/512/christmas-candle.png", title: "Men's Therapist" },
+    { src: "https://img.icons8.com/3d-fluency/512/hair-brush.png", title: 'Salon for Women', path: "/product" },
+    { src: 'https://img.icons8.com/3d-fluency/512/communicate-skin-type-7.png', title: 'Hair,Skin & Nail', path: "/product" },
+    { src: 'https://img.icons8.com/3d-fluency/512/stones.png', title: "Women's Therapist", path: "/product" },
+    { src: "https://img.icons8.com/3d-fluency/512/barber-chair.png", title: "Salon for Men", path: "/product" },
+    { src: "https://img.icons8.com/3d-fluency/512/christmas-candle.png", title: "Men's Therapist", path: "/product" },
 
 ]
 
 const home = [
-    { img: "https://img.icons8.com/3d-fluency/512/3d-fluency-tools.png", title: "Appliance Repair" },
-    { img: "https://img.icons8.com/3d-fluency/512/roller-brush.png", title: "Home Painting" },
-    { img: "https://img.icons8.com/3d-fluency/512/broom.png", title: "Cleaning & Pest" },
-    { img: "https://img.icons8.com/3d-fluency/512/plus.png", title: "Disinfection" },
-    { img: "https://img.icons8.com/3d-fluency/512/home.png", title: "Home Repairs" },
+    { img: "https://img.icons8.com/3d-fluency/512/3d-fluency-tools.png", title: "Appliance Repair", path: "/service" },
+    { img: "https://img.icons8.com/3d-fluency/512/roller-brush.png", title: "Home Painting", path: "/service" },
+    { img: "https://img.icons8.com/3d-fluency/512/broom.png", title: "Cleaning & Pest", path: "/service" },
+    { img: "https://img.icons8.com/3d-fluency/512/plus.png", title: "Disinfection", path: "/service" },
+    { img: "https://img.icons8.com/3d-fluency/512/home.png", title: "Home Repairs", path: "/service" },
 
 
 ]
@@ -45,6 +72,8 @@ const newcat = [
 ]
 
 function Home() {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [placement, setPlacement] = React.useState('right')
     return (
         <Box>
             <Navbar />
@@ -73,9 +102,30 @@ function Home() {
 
                 <HStack>
                     {care.map((item) => (
-                        <Box style={{ margin: "10px 50px" }}>
+
+                        <Box style={{ margin: "10px 50px" }} onClick={onOpen}>
+
                             <Image src={item.src} alt="picture" style={{ width: "50px", height: "50px" }} />
+
                             <Text fontSize='sm' >{item.title}</Text>
+
+                            <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+                                <DrawerOverlay />
+                                <DrawerContent>
+                                    <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
+                                    <DrawerBody>
+                                        {products.map((e) => (
+
+
+                                            <HStack mt="15px " >
+                                                <Image src={e.img} alt={e.title} w="90px" h="90px" />
+                                                <Link to="/product" fontSize='sm' >{e.title}</Link>
+                                            </HStack>
+                                        ))}
+                                    </DrawerBody>
+                                </DrawerContent>
+                            </Drawer>
+
                         </Box>
                     ))}
                 </HStack>
@@ -85,9 +135,27 @@ function Home() {
 
                 <HStack style={{ marginTop: "150px" }}>
                     {home.map((item) => (
-                        <Box style={{ margin: "10px 50px" }}>
+                        <Box style={{ margin: "10px 50px" }} onClick={onOpen}>
+
                             <Image src={item.img} alt="picture" style={{ width: "50px", height: "50px" }} />
-                            <Text fontSize='sm'>{item.title}</Text>
+                            {/* <Text fontSize='sm' >{item.title}</Text> */}
+                            <Link to="/service" fontSize='sm' >{item.title}</Link>
+                            {/* <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+                                <DrawerOverlay />
+                                <DrawerContent>
+                                    <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
+                                    <DrawerBody>
+                                        {serviceproduct.map((e) => (
+
+
+                                            <HStack mt="15px " >
+                                                <Image src={e.img} alt={e.title} w="90px" h="90px" />
+                                                <Link to="/service" fontSize='sm' >{e.title}</Link>
+                                            </HStack>
+                                        ))}
+                                    </DrawerBody>
+                                </DrawerContent>
+                            </Drawer> */}
                         </Box>
                     ))}
                 </HStack>
@@ -104,6 +172,23 @@ function Home() {
                     ))}
                 </HStack>
             </Box>
+            <HStack alignItems="center" justifyContent="center" m="auto" mt="80px" w="90%" h="200px" boxShadow="rgba(0 ,0, 0, 0.1) 0px 4px 6px -1px ,rgba(0 ,0, 0, 0.06) 0px 2px 4px -1px">
+                <Image src="https://img.icons8.com/ios-filled/512/shield.png" alt="shield" w="80px" />
+                <VStack>
+                    <Text fontSize='3xl'>Urban Company insurance protection </Text>
+                    <Text fontSize='lg' color="gray">Upto Rs 10,000 insurance cover with every service request.</Text>
+                </VStack>
+            </HStack>
+            <HStack alignItems="center" justifyContent="center" m="auto" mt="80px" w="90%" h="200px" boxShadow="rgba(0 ,0, 0, 0.1) 0px 4px 6px -1px ,rgba(0 ,0, 0, 0.06) 0px 2px 4px -1px">
+                <VStack mr="50px">
+                    <Text fontSize='3xl'>Anti Discrimination Policy</Text>
+                    <Text fontSize='lg'>Urban Comapny treats its community equally with respect and</Text>
+                    <Text fontSize='lg'>without judgement or bias</Text>
+                    <Button color="blue">Know More</Button>
+                </VStack>
+                <Image src="https://img.icons8.com/ios-filled/512/like.png" alt="heart" w="90px" ml="30px" />
+            </HStack>
+
             <Footer />
         </Box >
 

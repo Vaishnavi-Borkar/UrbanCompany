@@ -6,7 +6,7 @@ function Register() {
         <>
             <Flex style={{ height: "80px", justifyContent: "center", alignItems: "center" }}>
 
-                <img src="" alt="logo" />
+                <img style={{ width: "200px", height: "80px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbyulT-JGYWgijetJaAu1NoGDPpB29uP7yQ&usqp=CAU" alt="logo" />
                 <Spacer />
                 <HStack>
                     <Box style={{ padding: "1px 20px 1px 10px" }}>Book a service</Box>
